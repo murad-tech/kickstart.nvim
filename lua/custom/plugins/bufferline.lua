@@ -69,5 +69,10 @@ return {
     vim.keymap.set('n', '<leader>bsd', ':BufferLineSortByDirectory<CR>', { desc = 'Sort by directory', silent = true })
     vim.keymap.set('n', '<leader>bh', ':BufferLineCloseLeft<CR>', { desc = 'Close all to the left', silent = true })
     vim.keymap.set('n', '<leader>bl', ':BufferLineCloseRight<CR>', { desc = 'Close all to the right', silent = true })
+    vim.keymap.set('n', '<leader>bd', function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.cmd 'BufferLineCyclePrev'
+      vim.cmd('bdelete! ' .. bufnr)
+    end, { desc = 'Delete current buffer', silent = true })
   end,
 }
